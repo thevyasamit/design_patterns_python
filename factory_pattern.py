@@ -1,6 +1,7 @@
 '''
 This code demonstrates factory method.
 '''
+
 from abc import ABC, abstractmethod
 
 
@@ -13,40 +14,40 @@ class CarShowroom(ABC):
 
 class SUV(CarShowroom):
 
-    def __init__(self, car_name) -> None:
+    def __init__(self, car_name: str) -> None:
         self.car_type = "SUV"
         self.car_name = car_name
 
-    def display_car(self):
+    def display_car(self) -> None:
         print(f'my car type is {self.car_type} and my name is {self.car_name}')
 
 
 class Sedan(CarShowroom):
 
-    def __init__(self, car_name) -> None:
+    def __init__(self, car_name: str) -> None:
         self.car_type = "Sedan"
         self.car_name = car_name
 
-    def display_car(self):
+    def display_car(self) -> None:
         print(f'my car type is {self.car_type} and my name is {self.car_name}')
 
 
 class CarShowroomFactory(ABC):
 
     @abstractmethod
-    def create_car_showroom(self, car_name) -> CarShowroom:
+    def create_car_showroom(self, car_name: str) -> CarShowroom:
         pass
 
 
 class SUVFactory(CarShowroomFactory):
 
-    def create_car_showroom(self, car_name) -> CarShowroom:
+    def create_car_showroom(self, car_name: str) -> CarShowroom:
         return SUV(car_name=car_name)
 
 
 class SedanFactory(CarShowroomFactory):
 
-    def create_car_showroom(self, car_name) -> CarShowroom:
+    def create_car_showroom(self, car_name: str) -> CarShowroom:
         return Sedan(car_name=car_name)
 
 
@@ -67,7 +68,7 @@ to create objects.
 '''
 
 
-def factory_call():
+def factory_call() -> None:
 
     for factory, cars in REGISTRY.items():
         factory_class = factory()
